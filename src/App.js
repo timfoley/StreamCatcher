@@ -38,14 +38,13 @@ class App extends Component {
     })
   }
 
-  pullMovies(count) {
+  handleRefreshMovies() {
     var tmp = this.state.movies.slice(this.state.movies);
     var ret = [];
 
-    for (var i = 0; i < count; i++) {
+    for (var i = 0; i < 5; i++) {
       var index = Math.floor(Math.random() * tmp.length);
       var removed = tmp.splice(index, 1);
-      // Since we are only removing one element
       ret.push(removed[0]);
     }
     console.log(ret);
@@ -57,9 +56,7 @@ class App extends Component {
     return (
       <div className="App">
         <a href="#" onClick={e => this.getData(e)}>GET DATA</a>
-        <br />
-        <a href="#" onClick={e => this.displayMovies()}>PULL MOVIES</a>
-        {(this.state.movies.length > 0) ? <MoviesContainer movies={this.pullMovies(5)} /> : <p>Not loaded yet</p>}
+        <MoviesContainer movies={this.handleRefreshMovies()} />
       </div>
     );
   }

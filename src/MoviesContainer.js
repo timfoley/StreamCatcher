@@ -7,31 +7,30 @@ class MoviesContainer extends Component {
     flexWrap: 'wrap',
   }
 
+  onRefreshMovies() {
 
+  }
 
   render() {
+
+    const movies = (<div className="movies"  style={this.moviesStyle}>
+              {this.props.movies.map( (movie, i) => {
+                return <Movie
+                  key={i}
+                  movie={movie}
+                />
+              } )}
+            </div>)
+
+    const noMovies = <p>No movies yet!</p>
+
     return (
       <div className="movieContainer">
         <h2>MOVIES!</h2>
-        <div className="movies"  style={this.moviesStyle}>
-          {this.props.movies.map( (movie, i) => {
-            return <Movie
-              key={i}
-              movie={movie}
-            />
-          } )}
-        </div>
+        {this.props.movies[0] ? movies : noMovies}
       </div>
     )
   }
 }
 
 export default MoviesContainer
-
-
-// {this.state.results.map( (movie, i) => {
-//   return <div className="movie" key={i}>
-//     <h2>{movie.Title}</h2>
-//     <img src={movie.Poster} />
-//   </div>
-// } )}
