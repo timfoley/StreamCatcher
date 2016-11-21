@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 // import './Movie.css'
 
 class Movie extends Component {
-  movieStyle = {
-    backgroundImage: `url('${this.props.movie.movie.poster_240x342}')`,
-    backgroundSize: 'cover',
-    width: '20vw',
-    height: '28.5vw',
-  }
 
   render() {
+    let movieStyle = {
+      backgroundImage: `url('${this.props.movie.movie.poster_240x342}')`,
+      backgroundSize: 'cover',
+      width: '20vw',
+      height: '28.5vw',
+      color: 'white',
+    }
+
     return (
-      <div className="movie" style={this.movieStyle}>
-        {/* <h2>{this.props.movie.movie.title}</h2> */}
-        {/* <img src={this.props.movie.movie.poster_240x342} /> */}
+      <div className="movie" style={movieStyle}>
       </div>
     )
   }

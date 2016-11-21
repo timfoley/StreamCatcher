@@ -1,33 +1,48 @@
 import React, { Component } from 'react';
 import Movie from './Movie'
 
+
 class MoviesContainer extends Component {
-  moviesStyle = {
-    display: 'flex',
-    flexWrap: 'wrap',
+  constructor(props) {
+    super(props)
+    this.state = {
+      movies: this.props.movies,
+    }
   }
 
-  onRefreshMovies() {
+  moviesStyle = {
+    display: 'flex',
+  }
 
+  // when refresh is clicked
+  // mark all unlocked movies as skipped: true
+  // get a new batch of movies (skipped: false) numbering 5 - lockedMovies
+
+
+  onRefresh(e) {
+    e.preventDefault()
+    // handleRefreshMovies returns a new set of movies,
+    // as well as updates the original pool to keep track of skipped/locked movies
+    this.props.handleSkippedMovies(this.state.movies)
+    let newMovies = this.props.handleRefreshMovies()
+    this.setState({movies: newMovies})
   }
 
   render() {
 
-    const movies = (<div className="movies"  style={this.moviesStyle}>
-              {this.props.movies.map( (movie, i) => {
-                return <Movie
-                  key={i}
-                  movie={movie}
-                />
-              } )}
-            </div>)
-
-    const noMovies = <p>No movies yet!</p>
-
     return (
       <div className="movieContainer">
         <h2>MOVIES!</h2>
-        {this.props.movies[0] ? movies : noMovies}
+        <div className="movies"  style={this.moviesStyle}>
+          {this.state.movies.map( (movie, i) => {
+            return <Movie
+              key={i}
+              movie={movie}
+            />
+          } )}
+        </div>
+        <a href='#' onClick={e => this.onRefresh(e)}>refresh</a>
+        <br />
       </div>
     )
   }
