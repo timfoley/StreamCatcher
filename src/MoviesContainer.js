@@ -24,8 +24,7 @@ class MoviesContainer extends Component {
     // handleRefreshMovies returns a new set of movies,
     // as well as updates the original pool to keep track of skipped/locked movies
     this.props.handleSkippedMovies(this.state.movies)
-    let newMovies = this.props.handleRefreshMovies()
-    this.setState({movies: newMovies})
+    this.setState({movies: this.props.handleRefreshMovies()})
   }
 
   render() {
