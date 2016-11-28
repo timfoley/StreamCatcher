@@ -56,7 +56,7 @@ getData() {
         }
       } else { // if this is the first time getting data
         let outerRange = parseInt((res.data.total_results/100), 10)
-        let offsets = this.shuffle([...Array(outerRange).keys()])
+        let offsets = this.shuffle([...Array(outerRange).keys()].slice(1))
         this.setState({searching: false, movies: res.data.movies, numMovies: res.data.total_results, offsets: offsets})
         this.setState({firstFive: this.handleRefreshMovies(), dataLoaded: true}, _ => {
           this.handleSkippedMovies(this.state.firstFive);
