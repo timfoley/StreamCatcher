@@ -17,7 +17,8 @@ class App extends Component {
       rt: 75,
       services: [
         'hbo',
-        'hulu_plus'
+        'hulu_plus',
+        'amazon_prime',
       ]
     }
   }
@@ -32,36 +33,47 @@ getOneMovie(id) {
 }
 
 getData() {
-  console.log("getData() fired");
-  this.setState({searching: true, reloadCount: this.state.reloadCount + 1})
-  let services = this.state.filters.services.join(',')
-  let rt = this.state.filters.rt
-  let offsets = this.state.offsets
-  let reloadCount = this.state.reloadCount
-  axios.get(`http://localhost:4000/api/${services}/${rt}/${offsets[reloadCount] * 30}`)
-  .then(res => {
-    console.log(res);
-    if (this.state.dataLoaded) {
-      console.log(`${res.data.movies.length} more movies added to State`);
-      let newState = update(this.state.movies, {$push: res.data.movies})
-      this.setState({searching: false, movies: newState, dataLoaded: true, numMovies: res.data.total_results})
-    } else { // if this is the first time getting data
-      console.log("First batch received");
-      let outerRange = parseInt((res.data.total_results/30), 10)
-      let offsets = this.shuffle([...Array(outerRange).keys()])
-      this.setState({searching: false, movies: res.data.movies, numMovies: res.data.total_results, offsets: offsets})
-      this.setState({firstFive: this.handleRefreshMovies(), dataLoaded: true})
-    }
+  this.setState({searching: true, reloadCount: this.state.reloadCount + 1}, _ => {
+    let services = this.state.filters.services.join(',')
+    let rt = this.state.filters.rt
+    let offsets = this.state.offsets
+    let reloadCount = this.state.reloadCount
+    axios.get(`http://localhost:4000/api/${services}/${rt}/${offsets[reloadCount - 1] * 100}`)
+    .then(res => {
+      console.log(res);
+      if (this.state.dataLoaded) {
+        let validMovies = this.getValidMovies().length
+        if (res.data.movies.length < 1) {
+          console.log(`only ${res.data.movies.length} more movies added to State. Requesting more!`);
+          this.getData()
+        // } else if ( validMovies < 10) {
+        //   console.log(`only ${validMovies} valid movies, requesting more now!`);
+        //   this.getData()
+        } else {
+          console.log(`${res.data.movies.length} more movies added to State.`);
+          let newState = update(this.state.movies, {$push: res.data.movies})
+          this.setState({searching: false, movies: newState, dataLoaded: true, numMovies: res.data.total_results})
+        }
+      } else { // if this is the first time getting data
+        let outerRange = parseInt((res.data.total_results/100), 10)
+        let offsets = this.shuffle([...Array(outerRange).keys()])
+        this.setState({searching: false, movies: res.data.movies, numMovies: res.data.total_results, offsets: offsets})
+        this.setState({firstFive: this.handleRefreshMovies(), dataLoaded: true}, _ => {
+          this.handleSkippedMovies(this.state.firstFive);
+        })
+        this.getData()
+      }
+    })
   })
 }
 
+
 handleSkippedMovies(oldMovies) {
-  console.log(`updating skipped movies: ${this.getValidMovies().length}`);
   let tmpState = Object.assign({}, this.state)
 
   oldMovies.forEach(movie => {
     // find where it exists in state
-    let index = this.state.movies.indexOf(this.state.movies.find(mov => mov.title === movie.title))
+    let index = this.state.movies.findIndex(mov => mov.title === movie.title)
     // create a new object based on a copy of tmpState (using https://github.com/kolodny/immutability-helper)
     // where the `skipped` property is set to true
     let newState = update(tmpState, {
@@ -76,7 +88,7 @@ handleSkippedMovies(oldMovies) {
   this.setState({movies: tmpState.movies}, _ => {
     let validMovies = this.getValidMovies().length
     console.log(`DONE UPDATING STATE: ${validMovies}`);
-    if (validMovies < 50) {
+    if (validMovies < 100) {
       console.log("NEED MORE MOVIES!");
       this.getData();
     }
@@ -97,10 +109,16 @@ handleRefreshMovies() {
 }
 
 getValidMovies() {
-  var validMovies = this.state.movies
-    .filter(movie => {
-      return movie.skipped < 1
+  let validMovies = this.state.movies.filter(movie => {
+      return movie.skipped === 0
     })
+
+  if (validMovies.length === 0) {
+    console.log("all movies have been seen once");
+    validMovies = this.state.movies.filter( movie => {
+      return movie.skipped < 2
+    })
+  }
   return validMovies
 }
 
