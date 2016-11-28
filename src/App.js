@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
   super(props)
   this.state = {
+    batchSize: 30,
     searching: false,
     dataLoaded: false,
     movies: [],
@@ -15,7 +16,7 @@ class App extends Component {
     reloadCount: 0,
     filters: {
       rt: 75,
-      services: [
+      sources: [
         'hbo',
         'hulu_plus',
         'amazon_prime',
@@ -34,21 +35,18 @@ getOneMovie(id) {
 
 getData() {
   this.setState({searching: true, reloadCount: this.state.reloadCount + 1}, _ => {
-    let services = this.state.filters.services.join(',')
+    let sources = this.state.filters.sources.join(',')
     let rt = this.state.filters.rt
     let offsets = this.state.offsets
     let reloadCount = this.state.reloadCount
-    axios.get(`http://localhost:4000/api/${services}/${rt}/${offsets[reloadCount - 1] * 100}`)
+    let batchSize = this.state.batchSize
+    axios.get(`http://localhost:4000/api?sources=${sources}&rt=${rt}&offset=${offsets[reloadCount - 1] * batchSize}&batch=${batchSize}`)
     .then(res => {
       console.log(res);
       if (this.state.dataLoaded) {
-        let validMovies = this.getValidMovies().length
         if (res.data.movies.length < 1) {
           console.log(`only ${res.data.movies.length} more movies added to State. Requesting more!`);
           this.getData()
-        // } else if ( validMovies < 10) {
-        //   console.log(`only ${validMovies} valid movies, requesting more now!`);
-        //   this.getData()
         } else {
           console.log(`${res.data.movies.length} more movies added to State.`);
           let newState = update(this.state.movies, {$push: res.data.movies})
@@ -57,7 +55,7 @@ getData() {
       } else { // if this is the first time getting data
         let outerRange = parseInt((res.data.total_results/100), 10)
         let offsets = this.shuffle([...Array(outerRange).keys()].slice(1))
-        this.setState({searching: false, movies: res.data.movies, numMovies: res.data.total_results, offsets: offsets})
+        this.setState({searching: false, movies: res.data.movies, numMovies: res.data.total_results, offsets: offsets, batchSize: 100})
         this.setState({firstFive: this.handleRefreshMovies(), dataLoaded: true}, _ => {
           this.handleSkippedMovies(this.state.firstFive);
         })
