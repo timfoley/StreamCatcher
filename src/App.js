@@ -111,7 +111,7 @@ getValidMovies() {
       return movie.skipped === 0
     })
 
-  if (validMovies.length === 0) {
+  if (validMovies.length < 5) {
     console.log("all movies have been seen once");
     validMovies = this.state.movies.filter( movie => {
       return movie.skipped < 2
@@ -138,6 +138,7 @@ shuffle(array) {
                 movies={this.state.firstFive}
                 handleRefreshMovies={this.handleRefreshMovies.bind(this)}
                 handleSkippedMovies={this.handleSkippedMovies.bind(this)}
+                selectedMovie={this.state.firstFive[0]}
               />)
     } else { return <a href="#" onClick={e => this.getData(e)}>GET DATA</a> }
   }

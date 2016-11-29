@@ -18,11 +18,14 @@ class Movie extends Component {
       width: '20vw',
       height: '28.5vw',
       color: 'white',
-      outline: '2px solid red',
+      outline: '3px solid red',
     }
 
     return (
-      <div className="movie" style={this.props.locked ? lockedStyle : movieStyle} onClick={e => this.props.handleClick(e, this)}>
+      <div className="movie"
+        style={this.props.locked ? lockedStyle : movieStyle}
+        onMouseEnter={e => this.props.onSelect(e, this)}
+        onClick={e => this.props.handleClick(e, this)}>
       </div>
     )
   }
