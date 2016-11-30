@@ -60,6 +60,24 @@ class MoviesContainer extends Component {
     this.setState({selectedMovie: component.props.movie})
   }
 
+  sourceMap = {
+    hulu_plus: 'subscription',
+    hbo: 'tv_everywhere',
+    hbo_now: 'subscription',
+    amazon_prime: 'subscription',
+  }
+
+  processStreamingLinks(movie) {
+    let processedLinks = this.props.filters.sources.reduce( (memo, source) => {
+      // only worry about web sources for now. Later, we can check if they're on a mobile OS and serve that link
+      let longName = `${this.sourceMap[source]}_web_sources`
+      let sourceObject = movie[longName].find(service => service.source === source)
+      if (sourceObject) { memo.push(sourceObject) }
+      return memo
+    }, [])
+    return processedLinks
+  }
+
   getOneMovie(id) {
     return axios.get(`http://localhost:4000/api/movie/${id}`)
       .then(res => {
@@ -71,15 +89,16 @@ class MoviesContainer extends Component {
   handleGetStreamingLinks(movie) {
     this.getOneMovie(movie.props.movie.movie.id)
       .then(res => {
+        let streamingLinks = this.processStreamingLinks(res)
         this.setState({
-          selectedMovie: update(this.state.selectedMovie, {moreInfo: {$set: res}})
+          selectedMovie: update(this.state.selectedMovie, {moreInfo: {$set: res}, links: {$set: streamingLinks}})
         })
       })
   }
 
 
   render() {
-    let movieDetails = <MovieDetails movie={this.state.selectedMovie} onGetStreamingLinks={this.handleGetStreamingLinks.bind(this)}/>
+    let movieDetails = <MovieDetails movie={this.state.selectedMovie} onGetStreamingLinks={this.handleGetStreamingLinks.bind(this)} filters={this.props.filters}/>
     let noMovie = <p>Hover over a movie for more info!</p>
 
     return (

@@ -130,7 +130,7 @@ class App extends Component {
                 movies={this.state.firstFive}
                 handleRefreshMovies={this.handleRefreshMovies.bind(this)}
                 handleSkippedMovies={this.handleSkippedMovies.bind(this)}
-                selectedMovie={this.state.firstFive[0]}
+                filters={this.state.filters}
               />)
     } else { return <a href="#" onClick={e => this.getData(e)}>GET DATA</a> }
   }
