@@ -1,3 +1,5 @@
-# TODO
-- [ ] locking movies
-- [ ] only let movies repeat if all movies have already been shown
+# To Refactor
+- [ ] where to write component logic (App vs MoviesContainer vs MovieDetails etc.)
+
+# Bonus Features
+- [ ] colored bar under each movie to indicate genre?

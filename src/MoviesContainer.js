@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Movie from './Movie'
 import MovieDetails from './MovieDetails'
 import update from 'immutability-helper';
+import axios from 'axios'
 import './MoviesContainer.css';
 
 
@@ -11,7 +12,6 @@ class MoviesContainer extends Component {
     super(props)
     this.state = {
       movies: this.props.movies,
-      // selectedMovie: this.props.selectedMovie
     }
   }
 
@@ -60,12 +60,29 @@ class MoviesContainer extends Component {
     this.setState({selectedMovie: component.props.movie})
   }
 
+  getOneMovie(id) {
+    return axios.get(`http://localhost:4000/api/movie/${id}`)
+      .then(res => {
+        return res.data
+      })
+  }
+
+
+  handleGetStreamingLinks(movie) {
+    this.getOneMovie(movie.props.movie.movie.id)
+      .then(res => {
+        this.setState({
+          selectedMovie: update(this.state.selectedMovie, {moreInfo: {$set: res}})
+        })
+      })
+  }
+
+
   render() {
-    let movieDetails = <MovieDetails movie={this.state.selectedMovie} />
+    let movieDetails = <MovieDetails movie={this.state.selectedMovie} onGetStreamingLinks={this.handleGetStreamingLinks.bind(this)}/>
     let noMovie = <p>Hover over a movie for more info!</p>
 
     return (
-
 
       <div className="movieContainer">
         <h2>MOVIES!</h2>

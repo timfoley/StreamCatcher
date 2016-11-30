@@ -12,7 +12,7 @@ class App extends Component {
     searching: false,
     dataLoaded: false,
     movies: [],
-    offsets: [0],
+    offsets: [0, 1, 2, 3],
     reloadCount: 0,
     filters: {
       rt: 75,
@@ -25,13 +25,6 @@ class App extends Component {
   }
 }
 
-getOneMovie(id) {
-  axios.get(`http://localhost:4000/api/movie/${id}`)
-    .then(res => {
-      console.log(res.data);
-      return res.data
-    })
-}
 
 getData() {
   this.setState({searching: true, reloadCount: this.state.reloadCount + 1}, _ => {
