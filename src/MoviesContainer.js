@@ -87,10 +87,12 @@ class MoviesContainer extends Component {
 
 
   handleGetStreamingLinks(movie) {
+    let index = this.state.movies.findIndex(mov => mov === movie.props.movie)
     this.getOneMovie(movie.props.movie.movie.id)
       .then(res => {
         let streamingLinks = this.processStreamingLinks(res)
         this.setState({
+          movies: update(this.state.movies, {[index]: {moreInfo: {$set: res}, links: {$set: streamingLinks}}}),
           selectedMovie: update(this.state.selectedMovie, {moreInfo: {$set: res}, links: {$set: streamingLinks}})
         })
       })
