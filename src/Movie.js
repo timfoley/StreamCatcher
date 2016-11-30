@@ -10,6 +10,8 @@ class Movie extends Component {
       width: '20vw',
       height: '28.5vw',
       color: 'white',
+      boxSizing: 'border-box',
+
     }
 
     let lockedStyle = {
@@ -18,7 +20,8 @@ class Movie extends Component {
       width: '20vw',
       height: '28.5vw',
       color: 'white',
-      outline: '3px solid red',
+      border: '3px solid red',
+      boxSizing: 'border-box',
     }
 
     return (
