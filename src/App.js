@@ -18,10 +18,10 @@ class App extends Component {
       filters: {
         rt: 75,
         sources: {
-          hbo: true,
-          hulu_plus: true,
-          amazon_prime: true,
-          hulu: false,
+          hbo: false,
+          hulu_plus: false,
+          amazon_prime: false,
+          hulu_free: false,
         }
       }
     }
@@ -127,8 +127,6 @@ class App extends Component {
   }
 
   handleSourceChange(e, component) {
-    console.log(e.target.id);
-    console.log(component);
     this.setState({
       filters: update(this.state.filters, {sources: {[e.target.id]: {$set: e.target.checked}}})
     })

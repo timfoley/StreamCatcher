@@ -13,11 +13,13 @@
 
 ## Silver
 - [ ] add more filter options (by genre, metacritic score, etc.)
+- [ ] add a "free" filter for _all_ free movies 
 
 ## Gold
-- [ ] 
+- [ ]
 
 ## To Refactor
+- [ ] catch errors!
 - [ ] where to write component logic (App vs MoviesContainer vs MovieDetails etc.)
 - [ ] permanently save movie streaming links to state
 - [ ] for the first batch of movies, choose a random offset between 1-4

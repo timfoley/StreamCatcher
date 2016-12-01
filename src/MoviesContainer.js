@@ -65,7 +65,7 @@ class MoviesContainer extends Component {
     hbo: 'tv_everywhere',
     hbo_now: 'subscription',
     amazon_prime: 'subscription',
-    hulu: 'free',
+    hulu_free: 'free',
   }
 
   processStreamingLinks(movie) {
