@@ -17,18 +17,19 @@ class App extends Component {
       reloadCount: 0,
       filters: {
         rt: 75,
-        sources: [
-          'hbo',
-          'hulu_plus',
-          'amazon_prime',
-        ]
+        sources: {
+          hbo: true,
+          hulu_plus: true,
+          amazon_prime: true,
+          hulu: false,
+        }
       }
     }
   }
 
   getData() {
     this.setState({searching: true, reloadCount: this.state.reloadCount + 1}, _ => {
-      let sources = this.state.filters.sources.join(',')
+      let sources = Object.keys(this.state.filters.sources).filter(source => this.state.filters.sources[source]).join(',')
       let rt = this.state.filters.rt
       let offsets = this.state.offsets
       let reloadCount = this.state.reloadCount
