@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './FilterControls.css'
+import './FilterControls.css'
 
 class FilterControls extends Component {
   render() {
@@ -12,7 +12,6 @@ class FilterControls extends Component {
         <div className="sources">
           <label><input type="checkbox" id="hbo" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hbo}/> HBO</label>
           <label><input type="checkbox" id="hulu_plus" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hulu_plus}/> Hulu Plus</label>
-          {/* <label><input type="checkbox" id="hulu_free" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hulu}/> Hulu</label> */}
           <label><input type="checkbox" id="amazon_prime" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.amazon_prime}/> Amazon Prime</label>
         </div>
         <div className="scores">

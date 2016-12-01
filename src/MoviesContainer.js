@@ -25,7 +25,7 @@ class MoviesContainer extends Component {
 
 
   onRefresh(e) {
-    e.preventDefault()
+    if (e) e.preventDefault()
 
     let newBatch = this.props.handleRefreshMovies().map((movie, i) => {
       if (this.state.movies[i].locked) {
@@ -37,7 +37,7 @@ class MoviesContainer extends Component {
 
     this.setState({movies: newBatch, selectedMovie: null}, _ => {
       this.props.handleSkippedMovies(this.state.movies)
-      // this.props.handleSkippedMovies(oldBatch)
+      this.pressingSpace = false
     })
   }
 
@@ -82,7 +82,7 @@ class MoviesContainer extends Component {
   }
 
   getOneMovie(id) {
-    return axios.get(`http://localhost:4000/api/movie/${id}`)
+    return axios.get(`https://streampick-server-lxscczopcp.now.sh/api/movie/${id}`)
       .then(res => {
         return res.data
       })
@@ -101,6 +101,15 @@ class MoviesContainer extends Component {
       })
   }
 
+  pressingSpace = false
+  handleSpacebar(e) {
+    console.log(this.pressingSpace);
+    if (e.key === ' ' && !this.pressingSpace) {
+      this.pressingSpace = true
+      this.onRefresh()
+    }
+  }
+
 
   render() {
     let movieDetails = <MovieDetails movie={this.state.selectedMovie} onGetStreamingLinks={this.handleGetStreamingLinks.bind(this)} filters={this.props.filters}/>
@@ -109,7 +118,6 @@ class MoviesContainer extends Component {
     return (
 
       <div className="movieContainer">
-        <h2>MOVIES!</h2>
         <a href='#' onClick={e => this.onRefresh(e)}>refresh</a>
         <br />
         <div className="movies"  style={this.moviesStyle}>
@@ -126,6 +134,10 @@ class MoviesContainer extends Component {
         {this.state.selectedMovie ? movieDetails : noMovie}
       </div>
     )
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleSpacebar.bind(this))
   }
 }
 

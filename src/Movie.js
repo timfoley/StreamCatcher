@@ -25,6 +25,7 @@ class Movie extends Component {
 
     return (
       <div className="movie"
+        title={this.props.movie.movie.title}
         style={this.props.locked ? lockedStyle : movieStyle}
         onMouseEnter={e => this.props.onSelect(e, this)}
         onClick={e => this.props.handleClick(e, this)}>

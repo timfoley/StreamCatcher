@@ -34,7 +34,7 @@ class App extends Component {
       let offsets = this.state.dataLoaded ? this.state.offsets : this.shuffle(this.state.offsets) // only shuffle offsets if it's the first time
       let reloadCount = this.state.reloadCount
       let batchSize = this.state.batchSize
-      axios.get(`http://localhost:4000/api?sources=${sources}&rt=${rt}&offset=${offsets[reloadCount - 1] * batchSize}&batch=${batchSize}`)
+      axios.get(`https://streampick-server-lxscczopcp.now.sh/api?sources=${sources}&rt=${rt}&offset=${offsets[reloadCount - 1] * batchSize}&batch=${batchSize}`)
       .then(res => {
         console.log(res);
         if (this.state.dataLoaded) {
@@ -88,7 +88,7 @@ class App extends Component {
   }
 
   handleRefreshMovies() {
-    console.log("returning 5 random movies");
+    console.log("returning random movies");
     var tmp = this.getValidMovies()
     var ret = [];
     for (var i = 0; i < 4; i++) {
@@ -139,6 +139,8 @@ class App extends Component {
   }
 
   renderMovies() {
+    let findMovies = <a href="#" onClick={e => this.getData(e)}>GET DATA</a>
+
     if (this.state.dataLoaded) {
       return  (<MoviesContainer
                 movies={this.state.firstFive}
@@ -153,7 +155,7 @@ class App extends Component {
           onSourceChange={this.handleSourceChange.bind(this)}
           onScoreChange={this.handleScoreChange.bind(this)}
         />
-        <a href="#" onClick={e => this.getData(e)}>GET DATA</a>
+        {Object.keys(this.state.filters.sources).some(source => this.state.filters.sources[source]) ? findMovies : <p>Select at least one source above to get started!</p>}
       </div>
     ) }
   }
@@ -161,6 +163,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <header>
+          <h1>StreamCatcher</h1>
+        </header>
         { this.renderMovies() }
       </div>
     );
