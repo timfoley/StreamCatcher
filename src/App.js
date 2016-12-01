@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import './App.css'
 import MoviesContainer from './MoviesContainer'
+import FilterControls from './FilterControls'
 import update from 'immutability-helper';
 
 class App extends Component {
@@ -138,6 +139,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <FilterControls />
         { this.renderMovies() }
       </div>
     );
