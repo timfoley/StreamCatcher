@@ -31,7 +31,7 @@ class App extends Component {
     this.setState({searching: true, reloadCount: this.state.reloadCount + 1}, _ => {
       let sources = Object.keys(this.state.filters.sources).filter(source => this.state.filters.sources[source]).join(',')
       let rt = this.state.filters.rt
-      let offsets = this.state.offsets
+      let offsets = this.state.dataLoaded ? this.state.offsets : this.shuffle(this.state.offsets) // only shuffle offsets if it's the first time
       let reloadCount = this.state.reloadCount
       let batchSize = this.state.batchSize
       axios.get(`http://localhost:4000/api?sources=${sources}&rt=${rt}&offset=${offsets[reloadCount - 1] * batchSize}&batch=${batchSize}`)
