@@ -69,7 +69,9 @@ class MoviesContainer extends Component {
   }
 
   processStreamingLinks(movie) {
-    let processedLinks = this.props.filters.sources.reduce( (memo, source) => {
+    // let sources = Object.keys(this.state.filters.sources).filter(source => this.state.filters.sources[source]).join(',')
+
+    let processedLinks = Object.keys(this.props.filters.sources).filter(source => this.props.filters.sources[source]).reduce( (memo, source) => {
       // only worry about web sources for now. Later, we can check if they're on a mobile OS and serve that link
       let longName = `${this.sourceMap[source]}_web_sources`
       let sourceObject = movie[longName].find(service => service.source === source)

@@ -126,6 +126,14 @@ class App extends Component {
     return array;
   }
 
+  handleSourceChange(e, component) {
+    console.log(e.target.id);
+    console.log(component);
+    this.setState({
+      filters: update(this.state.filters, {sources: {[e.target.id]: {$set: e.target.checked}}})
+    })
+  }
+
   renderMovies() {
     if (this.state.dataLoaded) {
       return  (<MoviesContainer
@@ -140,7 +148,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FilterControls />
+        <FilterControls
+          filters={this.state.filters}
+          onSourceChange={this.handleSourceChange.bind(this)}
+        />
         { this.renderMovies() }
       </div>
     );

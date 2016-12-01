@@ -6,13 +6,13 @@ class FilterControls extends Component {
     return (
       <div className="controls">
         <div className="sources">
-          <label><input type="checkbox" id="hbo" value="hbo" /> HBO</label>
-          <label><input type="checkbox" id="hulu_plus" value="hulu_plus" /> Hulu Plus</label>
-          <label><input type="checkbox" id="hulu" value="hulu" /> Hulu</label>
-          <label><input type="checkbox" id="amazon_prime" value="amazon_prime" /> Amazon Prime</label>
+          <label><input type="checkbox" id="hbo" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hbo}/> HBO</label>
+          <label><input type="checkbox" id="hulu_plus" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hulu_plus}/> Hulu Plus</label>
+          <label><input type="checkbox" id="hulu" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hulu}/> Hulu</label>
+          <label><input type="checkbox" id="amazon_prime" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.amazon_prime}/> Amazon Prime</label>
         </div>
         <div className="scores">
-          <label><input type="text" id="rt" value="" /> Minimum Rotten Tomatoes Score</label>
+          {/* <label><input type="text" id="rt" value={this.props.filters.rt} /> Minimum Rotten Tomatoes Score</label> */}
         </div>
       </div>
     )
