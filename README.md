@@ -10,17 +10,26 @@
 ## Bronze
 - [ ] make it pretty!
 - [ ] flesh out movie detail fields (add genre, etc.)
+- [ ] add undo button
 
 ## Silver
+- [ ] optimize for mobile
+  - [ ] only display 4 movies?
+  - [ ] change streaming links to device-appropriate links
 - [ ] add more filter options (by genre, metacritic score, etc.)
-- [ ] add a "free" filter for _all_ free movies 
+- [ ] add a "free" filter for _all_ free movies
 
 ## Gold
 - [ ]
 
 ## To Refactor
+- [ ] **FORM VALIDATION ON RT SCORE FILTER**
+- [ ] what happens when the first filter doesn't return enough movies?
+- [ ] what do do when we've run out of movies (reloadCount > offset) 
+- [ ] when a user has locked 5 movies, hide refresh button
 - [ ] catch errors!
 - [ ] where to write component logic (App vs MoviesContainer vs MovieDetails etc.)
 - [ ] permanently save movie streaming links to state
 - [ ] for the first batch of movies, choose a random offset between 1-4
 - [ ] add more info to movie details
+- [ ] auto-generate source filter checkboxes based on presence in state

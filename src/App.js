@@ -30,7 +30,7 @@ class App extends Component {
   getData() {
     this.setState({searching: true, reloadCount: this.state.reloadCount + 1}, _ => {
       let sources = Object.keys(this.state.filters.sources).filter(source => this.state.filters.sources[source]).join(',')
-      let rt = this.state.filters.rt
+      let rt = parseInt(this.state.filters.rt, 10)
       let offsets = this.state.dataLoaded ? this.state.offsets : this.shuffle(this.state.offsets) // only shuffle offsets if it's the first time
       let reloadCount = this.state.reloadCount
       let batchSize = this.state.batchSize
@@ -91,7 +91,7 @@ class App extends Component {
     console.log("returning 5 random movies");
     var tmp = this.getValidMovies()
     var ret = [];
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 4; i++) {
       var index = Math.floor(Math.random() * tmp.length);
       var removed = tmp.splice(index, 1);
       ret.push(removed[0]);
@@ -132,6 +132,12 @@ class App extends Component {
     })
   }
 
+  handleScoreChange(e, component) {
+    this.setState({
+      filters: update(this.state.filters, {rt: {$set: e.target.value}})
+    })
+  }
+
   renderMovies() {
     if (this.state.dataLoaded) {
       return  (<MoviesContainer
@@ -140,16 +146,21 @@ class App extends Component {
                 handleSkippedMovies={this.handleSkippedMovies.bind(this)}
                 filters={this.state.filters}
               />)
-    } else { return <a href="#" onClick={e => this.getData(e)}>GET DATA</a> }
+    } else { return (
+      <div>
+        <FilterControls
+          filters={this.state.filters}
+          onSourceChange={this.handleSourceChange.bind(this)}
+          onScoreChange={this.handleScoreChange.bind(this)}
+        />
+        <a href="#" onClick={e => this.getData(e)}>GET DATA</a>
+      </div>
+    ) }
   }
 
   render() {
     return (
       <div className="App">
-        <FilterControls
-          filters={this.state.filters}
-          onSourceChange={this.handleSourceChange.bind(this)}
-        />
         { this.renderMovies() }
       </div>
     );

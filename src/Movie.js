@@ -7,8 +7,8 @@ class Movie extends Component {
     let movieStyle = {
       backgroundImage: `url('${this.props.movie.movie.poster_240x342}')`,
       backgroundSize: 'cover',
-      width: '20vw',
-      height: '28.5vw',
+      width: '25vw',
+      height: '35.63vw',
       color: 'white',
       boxSizing: 'border-box',
     }
@@ -16,10 +16,10 @@ class Movie extends Component {
     let lockedStyle = {
       backgroundImage: `url('${this.props.movie.movie.poster_240x342}')`,
       backgroundSize: 'cover',
-      width: '20vw',
-      height: '28.5vw',
+      width: '25vw',
+      height: '35.63vw',
       color: 'white',
-      border: '3px dashed tomato',
+      borderBottom: '10px solid #FF0000',
       boxSizing: 'border-box',
     }
 

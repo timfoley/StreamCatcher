@@ -3,16 +3,20 @@ import React, { Component } from 'react';
 
 class FilterControls extends Component {
   render() {
+    let rtFormStyle = {
+      width: '2em',
+    }
+
     return (
       <div className="controls">
         <div className="sources">
           <label><input type="checkbox" id="hbo" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hbo}/> HBO</label>
           <label><input type="checkbox" id="hulu_plus" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hulu_plus}/> Hulu Plus</label>
-          <label><input type="checkbox" id="hulu_free" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hulu}/> Hulu</label>
+          {/* <label><input type="checkbox" id="hulu_free" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hulu}/> Hulu</label> */}
           <label><input type="checkbox" id="amazon_prime" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.amazon_prime}/> Amazon Prime</label>
         </div>
         <div className="scores">
-          {/* <label><input type="text" id="rt" value={this.props.filters.rt} /> Minimum Rotten Tomatoes Score</label> */}
+          <label><input style={rtFormStyle} type="text" id="rt" value={this.props.filters.rt} onChange={e => this.props.onScoreChange(e, this)}/> Minimum Rotten Tomatoes Score</label>
         </div>
       </div>
     )
