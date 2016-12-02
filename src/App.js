@@ -139,7 +139,7 @@ class App extends Component {
   }
 
   renderMovies() {
-    let findMovies = <a href="#" onClick={e => this.getData(e)}>GET DATA</a>
+    let findMovies = <a href="#" className="button" onClick={e => this.getData(e)}>Show me some movies!</a>
 
     if (this.state.dataLoaded) {
       return  (<MoviesContainer
@@ -155,7 +155,7 @@ class App extends Component {
           onSourceChange={this.handleSourceChange.bind(this)}
           onScoreChange={this.handleScoreChange.bind(this)}
         />
-        {Object.keys(this.state.filters.sources).some(source => this.state.filters.sources[source]) ? findMovies : <p>Select at least one source above to get started!</p>}
+        <p>{Object.keys(this.state.filters.sources).some(source => this.state.filters.sources[source]) ? findMovies : <strong>Select at least one source above to get started!</strong>}</p>
       </div>
     ) }
   }
@@ -164,7 +164,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <h1>StreamCatcher</h1>
+          <h1>STREAM CATCHER</h1>
         </header>
         { this.renderMovies() }
       </div>

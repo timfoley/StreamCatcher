@@ -14,12 +14,12 @@ class Movie extends Component {
     }
 
     let lockedStyle = {
-      backgroundImage: `url('${this.props.movie.movie.poster_240x342}')`,
+      backgroundImage: `url('${this.props.movie.movie.poster_400x570}')`,
       backgroundSize: 'cover',
       width: '25vw',
       height: '35.63vw',
       color: 'white',
-      borderBottom: '10px solid #FF0000',
+      borderBottom: '15px solid #FF0000',
       boxSizing: 'border-box',
     }
 

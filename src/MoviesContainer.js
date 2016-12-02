@@ -89,21 +89,27 @@ class MoviesContainer extends Component {
   }
 
 
-  handleGetStreamingLinks(movie) {
-    let index = this.state.movies.findIndex(mov => mov === movie.props.movie)
+  handleGetStreamingLinks(e, movie) {
+    console.log(e);
+    e.preventDefault()
+    let index = this.state.movies.findIndex(mov => mov.title === movie.props.movie.title)
+    console.log(index);
+    console.log(movie);
     this.getOneMovie(movie.props.movie.movie.id)
       .then(res => {
         let streamingLinks = this.processStreamingLinks(res)
+        console.log(this.state.movies);
         this.setState({
           movies: update(this.state.movies, {[index]: {moreInfo: {$set: res}, links: {$set: streamingLinks}}}),
-          selectedMovie: update(this.state.selectedMovie, {moreInfo: {$set: res}, links: {$set: streamingLinks}})
+          selectedMovie: update(this.state.selectedMovie, {moreInfo: {$set: res}, links: {$set: streamingLinks}}, _ => {
+            console.log(this.state.selectedMovie);
+          })
         })
       })
   }
 
   pressingSpace = false
   handleSpacebar(e) {
-    console.log(this.pressingSpace);
     if (e.key === ' ' && !this.pressingSpace) {
       this.pressingSpace = true
       this.onRefresh()
@@ -113,12 +119,12 @@ class MoviesContainer extends Component {
 
   render() {
     let movieDetails = <MovieDetails movie={this.state.selectedMovie} onGetStreamingLinks={this.handleGetStreamingLinks.bind(this)} filters={this.props.filters}/>
-    let noMovie = <p>Hover over a movie for more info!</p>
+    let noMovie = <p><strong>Hover over a movie for more info!</strong></p>
 
     return (
 
       <div className="movieContainer">
-        <a href='#' onClick={e => this.onRefresh(e)}>refresh</a>
+        <p><a href='#' className="refresh-button button" onClick={e => this.onRefresh(e)}>more movies!</a></p>
         <br />
         <div className="movies"  style={this.moviesStyle}>
           {this.state.movies.map( (movie, i) => {

@@ -8,16 +8,20 @@
 - [ ] user can update filters and start a new search
 
 ## Bronze
-- [ ] make it pretty!
-- [ ] flesh out movie detail fields (add genre, etc.)
+- [x] make it prettier
+- [ ] flesh out movie detail fields (add genre, running time, etc.)
 - [ ] add undo button
+- [ ] add loading animation
+- [x]
 
 ## Silver
+- [ ] movie will be done by 10pm (or nearest 15 minutes rounded up)
 - [ ] optimize for mobile
-  - [ ] only display 4 movies?
+  - [x] only display 4 movies?
   - [ ] change streaming links to device-appropriate links
 - [ ] add more filter options (by genre, metacritic score, etc.)
 - [ ] add a "free" filter for _all_ free movies
+- [ ] filter by time
 
 ## Gold
 - [ ]

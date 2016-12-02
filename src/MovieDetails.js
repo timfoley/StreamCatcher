@@ -3,29 +3,23 @@ import './MovieDetails.css'
 
 class MovieDetails extends Component {
 
-
   showLinks() {
     if (this.props.movie.links) {
       return this.props.movie.links.map( link => {
-        return <p><a href={link.link} className={link.source} target="_blank">{link.display_name}</a></p>
+        return <p><a href={link.link} className={`${link.source} button`} target="_blank">Stream on {link.display_name}</a></p>
       })
     } else {
-      return <a href='#' onClick={e => this.props.onGetStreamingLinks(this)}>Ready to watch? Click for streaming links</a>
+      return <p><a href='#' className="button" onClick={e => this.props.onGetStreamingLinks(e, this)}>Ready to watch? Click for streaming links</a></p>
     }
   }
 
   render() {
-    // let streamingLinks = ({this.props.movie.links.map(link => {
-    //   return <span className={link.source}>{link.display_name}</span>
-    // })})
-    // let clickForLinks = <a href='#' onClick={e => this.props.onGetStreamingLinks(this)}>Get streaming links</a>
-
     return (
       <div className="movie-details">
         <h1>{this.props.movie.movie.title} ({this.props.movie.movie.release_year})</h1>
         <p className="actors">{this.props.movie.omdbInfo.Actors}</p>
         <p>{this.props.movie.omdbInfo.Plot}</p>
-        <p className="rt-score"><strong>RT Score:</strong> <a href={this.props.movie.omdbInfo.tomatoURL} target="_blank">{this.props.movie.omdbInfo.tomatoMeter}</a></p>
+        <p className="rt-score"><strong>RT Score:</strong> <a className="button" href={this.props.movie.omdbInfo.tomatoURL} target="_blank">{this.props.movie.omdbInfo.tomatoMeter}</a></p>
         <p className="rt-consensus"><strong>RT Consensus:</strong> {this.props.movie.omdbInfo.tomatoConsensus}</p>
         {this.showLinks()}
       </div>

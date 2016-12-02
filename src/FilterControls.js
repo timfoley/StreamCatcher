@@ -15,7 +15,7 @@ class FilterControls extends Component {
           <label><input type="checkbox" id="amazon_prime" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.amazon_prime}/> Amazon Prime</label>
         </div>
         <div className="scores">
-          <label><input style={rtFormStyle} type="text" id="rt" value={this.props.filters.rt} onChange={e => this.props.onScoreChange(e, this)}/> Minimum Rotten Tomatoes Score</label>
+          <label>Minimum Rotten Tomatoes Score: <input style={rtFormStyle} type="text" id="rt" value={this.props.filters.rt} onChange={e => this.props.onScoreChange(e, this)}/></label>
         </div>
       </div>
     )

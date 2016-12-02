@@ -1,5 +1,44 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto Slab', serif;
+  font-size: 18px;
+  background-color: #F1F3F4;
+}
+
+header {
+  margin-bottom: 0;
+}
+
+header > h1 {
+  font-family: 'Denk One', sans-serif;
+  font-size: 2.5em;
+}
+
+.button {
+  padding: 5px;
+  background: #FF0000;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: all 200ms;
+  box-shadow: 0 3px 0 0 #A4000A;
+}
+
+.button:hover {
+  color: white;
+  background: #FA000A;
+  transition: all 200ms;
+}
+
+.button:active {
+  color: rgb(247, 247, 247);
+  background: rgb(240, 0, 10);
+}
+
+.movie-details {
+  margin-bottom: 40px;
+  padding-left: 20px;
 }

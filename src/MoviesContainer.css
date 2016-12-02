@@ -1,3 +1,7 @@
 .locked {
   border: 2px solid red
 }
+
+p {
+  margin-bottom: 0;
+}
