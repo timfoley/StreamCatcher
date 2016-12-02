@@ -56,3 +56,12 @@ header > h1 {
 .intro-text > h2 {
   margin-top: 0;
 }
+
+@media only screen
+  and (max-width: 600px) {
+
+    .refresh-button {
+      width: 100%;
+    }
+
+}

@@ -14,7 +14,7 @@ class Movie extends Component {
     }
 
     let lockedStyle = {
-      backgroundImage: `url('${this.props.movie.movie.poster_400x570}')`,
+      backgroundImage: `url('${this.props.movie.movie.poster_240x342}')`,
       backgroundSize: 'cover',
       width: '25vw',
       height: '35.63vw',

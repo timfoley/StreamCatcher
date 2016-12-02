@@ -5,17 +5,18 @@
 - [x] user can 'lock' movies they want to keep in the running
 - [x] user can hover over a movie to find out more info
 - [x] user can get streaming links for a particular movie
-- [ ] user can update filters and start a new search
+- [ ] user can update filters and start a new search without refreshing
 
 ## Bronze
-- [ ] user onboarding/instructions
+- [x] user onboarding/instructions
 - [ ] flesh out movie detail fields (add genre, running time, etc.)
-- [ ] add movie trailers 
+- [ ] add movie trailers
 - [ ] add undo button
 - [ ] add loading animation
 - [x] make it prettier
 
 ## Silver
+- [ ] floating tooltips or something to demonstrate how to use
 - [ ] movie will be done by 10pm (or nearest 15 minutes rounded up)
 - [ ] optimize for mobile
   - [x] only display 4 movies?
