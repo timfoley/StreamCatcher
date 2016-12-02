@@ -140,6 +140,7 @@ class App extends Component {
 
   renderMovies() {
     let findMovies = <a href="#" className="button" onClick={e => this.getData(e)}>Show me some movies!</a>
+    let intro = <div className="intro-text"><h2>How do I work this?</h2><p>Pick a few sources and a minimum <a href='https://www.rottentomatoes.com/'>Rotten Tomatoes</a> score, and we'll show you <strong>four</strong> movies that match.</p> <p>See something you like? <strong>Click on it to lock it down</strong>. Press <strong><code>space</code></strong> (or click <strong>more movies!</strong>) to refresh the selection. Hover over each movie for more info.</p><p>Continue refreshing, locking, and unlocking until you've found something that looks good. Then just click to get the streaming links, sit back, and enjoy the show! </p></div>
 
     if (this.state.dataLoaded) {
       return  (<MoviesContainer
@@ -156,6 +157,7 @@ class App extends Component {
           onScoreChange={this.handleScoreChange.bind(this)}
         />
         <p>{Object.keys(this.state.filters.sources).some(source => this.state.filters.sources[source]) ? findMovies : <strong>Select at least one source above to get started!</strong>}</p>
+        {intro}
       </div>
     ) }
   }
@@ -164,7 +166,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <h1>STREAM CATCHER</h1>
+          <h1>STREAM CATCHER!</h1>
         </header>
         { this.renderMovies() }
       </div>

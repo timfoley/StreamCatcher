@@ -6,3 +6,14 @@
 .sources > label {
   margin-right: 2em;
 }
+
+button, input, select, textarea {
+  font-family : inherit;
+  font-size   : 100%;
+}
+
+input {
+  text-align: center;
+  border: 1px solid gray;
+  border-radius: 3px;
+}

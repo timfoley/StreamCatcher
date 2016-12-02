@@ -8,11 +8,12 @@
 - [ ] user can update filters and start a new search
 
 ## Bronze
-- [x] make it prettier
+- [ ] user onboarding/instructions
 - [ ] flesh out movie detail fields (add genre, running time, etc.)
+- [ ] add movie trailers 
 - [ ] add undo button
 - [ ] add loading animation
-- [x]
+- [x] make it prettier
 
 ## Silver
 - [ ] movie will be done by 10pm (or nearest 15 minutes rounded up)
