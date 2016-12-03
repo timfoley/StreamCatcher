@@ -8,11 +8,11 @@
 - [ ] user can update filters and start a new search without refreshing
 
 ## Bronze
-- [x] user onboarding/instructions
 - [ ] flesh out movie detail fields (add genre, running time, etc.)
 - [ ] add movie trailers
 - [ ] add undo button
 - [ ] add loading animation
+- [x] user onboarding/instructions
 - [x] make it prettier
 
 ## Silver
@@ -36,6 +36,5 @@
 - [ ] catch errors!
 - [ ] where to write component logic (App vs MoviesContainer vs MovieDetails etc.)
 - [ ] permanently save movie streaming links to state
-- [ ] for the first batch of movies, choose a random offset between 1-4
-- [ ] add more info to movie details
+- [x] for the first batch of movies, choose a random offset between 1-4
 - [ ] auto-generate source filter checkboxes based on presence in state (contact.eirving)

@@ -22,6 +22,7 @@ class App extends Component {
           hulu_plus: false,
           amazon_prime: false,
           hulu_free: false,
+          // youtube: false,
         }
       }
     }
@@ -34,6 +35,7 @@ class App extends Component {
       let offsets = this.state.dataLoaded ? this.state.offsets : this.shuffle(this.state.offsets) // only shuffle offsets if it's the first time
       let reloadCount = this.state.reloadCount
       let batchSize = this.state.batchSize
+      // axios.get(`http://localhost:4000/api?sources=${sources}&rt=${rt}&offset=${offsets[reloadCount - 1] * batchSize}&batch=${batchSize}`)
       axios.get(`https://streampick-server-lxscczopcp.now.sh/api?sources=${sources}&rt=${rt}&offset=${offsets[reloadCount - 1] * batchSize}&batch=${batchSize}`)
       .then(res => {
         console.log(res);

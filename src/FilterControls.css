@@ -12,8 +12,9 @@ button, input, select, textarea {
   font-size   : 100%;
 }
 
-input {
+.input {
   text-align: center;
   border: 1px solid gray;
   border-radius: 3px;
+  width: 2.1em;
 }

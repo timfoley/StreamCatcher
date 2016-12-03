@@ -66,6 +66,7 @@ class MoviesContainer extends Component {
     hbo_now: 'subscription',
     amazon_prime: 'subscription',
     hulu_free: 'free',
+    youtube: 'free',
   }
 
   processStreamingLinks(movie) {
@@ -82,6 +83,7 @@ class MoviesContainer extends Component {
   }
 
   getOneMovie(id) {
+    // return axios.get(`http://localhost:4000/api/movie/${id}`)
     return axios.get(`https://streampick-server-lxscczopcp.now.sh/api/movie/${id}`)
       .then(res => {
         return res.data
