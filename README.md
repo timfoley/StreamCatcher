@@ -1,3 +1,18 @@
+# StreamCatcher!
+Picking a movie to watch in the age of streaming _should_ be easy. Anyone who's spent way too much time scrolling through dozens of titles knows it's not that simple!
+
+Enter **StreamCatcher**. StreamCatcher helps you make good decisions quickly.Pick a few sources and a minimum Rotten Tomatoes score, and we'll show you four movies that match.
+
+See something you like? Click on it to lock it down. Press space (or click more movies!) to refresh the selection. Hover over each movie for more info.
+
+Continue refreshing, locking, and unlocking until you've found something that looks good. Then just click to get the streaming links, sit back, and enjoy the show!
+
+I built this in just over a week as my final project for General Assembly DC's Web Development Immersive program. See below for my next steps, and feel free to reach out with questions, issues, or pull-requests!
+
+## How It's Made
+- An Express server handles API calls to [GuideBox](https://api.guidebox.com/) and [OMDB](omdbapi.com) (major shout-outs!), filtering and preparing the results
+- This React front-end takes care of displaying info, re-querying the back-end to refresh movies, etc.
+
 
 # Milestones
 ## MVP
