@@ -12,6 +12,7 @@ I built this in just over a week as my final project for General Assembly DC's W
 ## How It's Made
 - An Express server handles API calls to [GuideBox](https://api.guidebox.com/) and [OMDB](omdbapi.com) (major shout-outs!), filtering and preparing the results
 - This React front-end takes care of displaying info, re-querying the back-end to refresh movies, etc.
+- I'd also like to say a HUGE thank-you to [Coolors](http://coolors.co), an awesome color-scheme generator, for giving me the inspiration for this site.  
 
 
 # Milestones
