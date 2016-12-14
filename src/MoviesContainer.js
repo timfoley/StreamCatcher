@@ -12,6 +12,7 @@ class MoviesContainer extends Component {
     super(props)
     this.state = {
       movies: this.props.movies,
+      selectedMovie: null,
     }
   }
 
@@ -46,7 +47,7 @@ class MoviesContainer extends Component {
       // if it's not Windows, iOS, or Android, just toggle the lock status
       console.log("regular click!");
       this.toggleLock(e, component)
-    } else if (this.state.selectedMovie === undefined) {
+    } else if (this.state.selectedMovie === null) {
       //if there is no selected movie, select it
       this.handleSelect(e, component)
     } else if (this.state.selectedMovie.title === component.props.movie.title) {
