@@ -9,3 +9,7 @@ p {
 .hover-sign {
   min-height: 400px;
 }
+
+.movies {
+  background: linear-gradient(to bottom, #F1F3F4, #c2bfbf);
+}

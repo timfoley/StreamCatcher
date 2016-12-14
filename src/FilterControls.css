@@ -5,6 +5,7 @@
 
 .sources > label {
   margin-right: 2em;
+  font-size: 1.2em;
 }
 
 button, input, select, textarea {
@@ -17,11 +18,19 @@ button, input, select, textarea {
   border: 1px solid gray;
   border-radius: 3px;
   width: 2.1em;
+  font-size: 1em;
 }
 
 .input[type='range'] {
   width: 200px;
   margin-right: 1em;
+  height: 1em;
+  border: 0;
+}
+
+.input[type='range']::-moz-range-thumb {
+  height: .5em;
+  width: .5em;
 }
 
 .scores > label {
