@@ -21,6 +21,7 @@ button, input, select, textarea {
   font-size: 1em;
 }
 
+
 .input[type='range'] {
   width: 200px;
   margin-right: 1em;

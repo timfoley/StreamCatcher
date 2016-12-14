@@ -148,8 +148,6 @@ class MoviesContainer extends Component {
     return (
 
       <div className="movieContainer">
-        <p><a href='#' className="refresh-button button" onClick={e => this.onRefresh(e)}>more movies!</a></p>
-        <br />
         <div className="movies"  style={this.moviesStyle}>
           {this.state.movies.map( (movie, i) => {
             return <Movie
@@ -161,6 +159,7 @@ class MoviesContainer extends Component {
             />
           } )}
         </div>
+        <p><a href='#' className="refresh-button button" onClick={e => this.onRefresh(e)}>more movies!</a></p>
         {this.state.selectedMovie ? movieDetails : noMovie}
       </div>
     )

@@ -13,3 +13,16 @@ p {
 .movies {
   background: linear-gradient(to bottom, #F1F3F4, #c2bfbf);
 }
+
+.refresh-button {
+  width: 200px;
+  display: inline-block;
+}
+
+@media (max-width: 900px) {
+
+    .refresh-button {
+      width: 75%;
+    }
+
+}
