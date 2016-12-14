@@ -9,6 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      os: this.getMobileOperatingSystem(),
       batchSize: 100,
       searching: false,
       dataLoaded: false,
@@ -26,6 +27,32 @@ class App extends Component {
         }
       }
     }
+  }
+
+    /**
+   * Determine the mobile operating system. Code found at http://stackoverflow.com/questions/21741841/detecting-ios-android-operating-system
+   * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+   *
+   * @returns {String}
+   */
+  getMobileOperatingSystem() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // Windows Phone must come first because its UA also contains "Android"
+      if (/windows phone/i.test(userAgent)) {
+          return "Windows Phone";
+      }
+
+      if (/android/i.test(userAgent)) {
+          return "Android";
+      }
+
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+          return "iOS";
+      }
+
+      return "unknown";
   }
 
   getData() {
@@ -150,6 +177,7 @@ class App extends Component {
                 handleRefreshMovies={this.handleRefreshMovies.bind(this)}
                 handleSkippedMovies={this.handleSkippedMovies.bind(this)}
                 filters={this.state.filters}
+                os={this.state.os}
               />)
     } else { return (
       <div>

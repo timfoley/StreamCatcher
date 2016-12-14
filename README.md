@@ -45,10 +45,14 @@ I built this in just over a week as my final project for General Assembly DC's W
 - [ ]
 
 ## To Refactor
-- [ ] **FORM VALIDATION ON RT SCORE FILTER**
+- [ ] mobile optimization:
+  - [ ] best way to deal with touch vs. click events
+    - currently handled based on UserAgent OS
+    - would it be better to differentiate clicks vs touch events instead? 
+- [ ] FORM VALIDATION ON RT SCORE FILTER
 - [ ] what happens when the first filter doesn't return enough movies?
 - [ ] what do do when we've run out of movies (reloadCount > offset)
-- [ ] when a user has locked 5 movies, hide refresh button
+- [ ] when a user has locked 4 movies, hide refresh button
 - [ ] catch errors!
 - [ ] where to write component logic (App vs MoviesContainer vs MovieDetails etc.)
 - [ ] permanently save movie streaming links to state

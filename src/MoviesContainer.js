@@ -41,6 +41,23 @@ class MoviesContainer extends Component {
     })
   }
 
+  handleClick(e, component) {
+    if (this.props.os === "unknown") {
+      // if it's not Windows, iOS, or Android, just toggle the lock status
+      console.log("regular click!");
+      this.toggleLock(e, component)
+    } else if (this.state.selectedMovie === undefined) {
+      //if there is no selected movie, select it
+      this.handleSelect(e, component)
+    } else if (this.state.selectedMovie.title === component.props.movie.title) {
+      // if it's already been selected, then lock it
+      this.toggleLock(e, component)
+    } else {
+      // otherwise, select it
+      this.handleSelect(e, component)
+    }
+  }
+
   toggleLock(e, component) {
     let index = this.state.movies.findIndex(movie => movie === component.props.movie)
     if (component.props.movie.locked) {
@@ -57,6 +74,10 @@ class MoviesContainer extends Component {
   }
 
   handleSelect(e, component) {
+    // ignore mousenter events on mobile devices
+    if (e.type === "mouseenter" && this.props.os !== "unknown") {
+      return
+    }
     this.setState({selectedMovie: component.props.movie})
   }
 
@@ -121,7 +142,7 @@ class MoviesContainer extends Component {
 
   render() {
     let movieDetails = <MovieDetails movie={this.state.selectedMovie} onGetStreamingLinks={this.handleGetStreamingLinks.bind(this)} filters={this.props.filters}/>
-    let noMovie = <p><strong>Hover over a movie for more info!</strong></p>
+    let noMovie = <p className="hover-sign"><strong>Hover over a movie for more info!</strong></p>
 
     return (
 
@@ -134,7 +155,7 @@ class MoviesContainer extends Component {
               key={i}
               movie={movie}
               locked={movie.locked}
-              handleClick={this.toggleLock.bind(this)}
+              handleClick={this.handleClick.bind(this)}
               onSelect={this.handleSelect.bind(this)}
             />
           } )}

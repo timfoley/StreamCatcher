@@ -5,3 +5,7 @@
 p {
   margin-bottom: 0;
 }
+
+.hover-sign {
+  min-height: 400px;
+}

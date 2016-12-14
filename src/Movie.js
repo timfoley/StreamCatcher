@@ -4,9 +4,12 @@ import React, { Component } from 'react';
 class Movie extends Component {
 
   render() {
+
+    // definitely going to refactor this into separate CSS file or something...
     let movieStyle = {
       backgroundImage: `url('${this.props.movie.movie.poster_240x342}')`,
       backgroundSize: 'cover',
+      cursor: 'pointer',
       width: '25vw',
       height: '35.63vw',
       color: 'white',
@@ -16,6 +19,7 @@ class Movie extends Component {
     let lockedStyle = {
       backgroundImage: `url('${this.props.movie.movie.poster_240x342}')`,
       backgroundSize: 'cover',
+      cursor: 'pointer',
       width: '25vw',
       height: '35.63vw',
       color: 'white',

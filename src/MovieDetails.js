@@ -13,6 +13,14 @@ class MovieDetails extends Component {
     }
   }
 
+  showConsensus() {
+    if (this.props.movie.omdbInfo.tomatoConsensus === "N/A") {
+      return;
+    } else {
+      return <p className="rt-consensus"><strong>RT Consensus:</strong> {this.props.movie.omdbInfo.tomatoConsensus}</p>
+    }
+  }
+
   render() {
     return (
       <div className="movie-details">
@@ -20,7 +28,7 @@ class MovieDetails extends Component {
         <p className="actors">{this.props.movie.omdbInfo.Actors}</p>
         <p>{this.props.movie.omdbInfo.Plot}</p>
         <p className="rt-score"><strong>RT Score:</strong> <a className="button" href={this.props.movie.omdbInfo.tomatoURL} target="_blank">{this.props.movie.omdbInfo.tomatoMeter}</a></p>
-        <p className="rt-consensus"><strong>RT Consensus:</strong> {this.props.movie.omdbInfo.tomatoConsensus}</p>
+        {this.showConsensus()}
         {this.showLinks()}
       </div>
     )
