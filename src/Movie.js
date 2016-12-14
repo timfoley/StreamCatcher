@@ -29,7 +29,7 @@ class Movie extends Component {
 
     return (
       <div className="movie"
-        title={this.props.movie.movie.title}
+        // title={this.props.movie.movie.title} //this is actually kinda annoying!
         style={this.props.locked ? lockedStyle : movieStyle}
         onMouseEnter={e => this.props.onSelect(e, this)}
         onClick={e => this.props.handleClick(e, this)}>
