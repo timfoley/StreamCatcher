@@ -18,3 +18,21 @@ button, input, select, textarea {
   border-radius: 3px;
   width: 2.1em;
 }
+
+.input[type='range'] {
+  width: 200px;
+  margin-right: 1em;
+}
+
+.scores > label {
+  font-size: 2em;
+  height: 1.2em;
+}
+
+
+
+.sources {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
