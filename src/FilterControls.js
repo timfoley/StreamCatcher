@@ -8,6 +8,7 @@ class FilterControls extends Component {
       <div className="controls">
         <h2>Sources: </h2>
         <div className="sources control">
+          {/* REFACTOR to dynamically populate from sources in state */}
           <label><input type="checkbox" className="control__input" id="hbo" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hbo}/> HBO</label>
           <label><input type="checkbox" className="control__input" id="hulu_plus" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.hulu_plus}/> Hulu Plus</label>
           <label><input type="checkbox" className="control__input" id="amazon_prime" onChange={e => this.props.onSourceChange(e, this)} checked={this.props.filters.sources.amazon_prime}/> Amazon Prime</label>

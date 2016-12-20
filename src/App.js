@@ -29,12 +29,12 @@ class App extends Component {
     }
   }
 
-    /**
-   * Determine the mobile operating system. Code found at http://stackoverflow.com/questions/21741841/detecting-ios-android-operating-system
-   * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
-   *
-   * @returns {String}
-   */
+  /**
+  * Determine the mobile operating system. Code found at http://stackoverflow.com/questions/21741841/detecting-ios-android-operating-system
+  * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+  *
+  * @returns {String}
+  */
   getMobileOperatingSystem() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
@@ -65,9 +65,9 @@ class App extends Component {
       // axios.get(`http://localhost:4000/api?sources=${sources}&rt=${rt}&offset=${offsets[reloadCount - 1] * batchSize}&batch=${batchSize}`)
       axios.get(`https://streampick-server-lxscczopcp.now.sh/api?sources=${sources}&rt=${rt}&offset=${offsets[reloadCount - 1] * batchSize}&batch=${batchSize}`)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         if (this.state.dataLoaded) {
-          if (res.data.movies.length < 1) {
+          if (res.data.movies.length < 3) {
             console.log(`only ${res.data.movies.length} more movies added to State. Requesting more!`);
             this.getData()
           } else {
@@ -108,16 +108,15 @@ class App extends Component {
 
     this.setState({movies: tmpState.movies}, _ => {
       let validMovies = this.getValidMovies().length
-      console.log(`DONE UPDATING STATE: ${validMovies}`);
+      console.log(`Remaining unseen movies: ${validMovies}`);
       if (validMovies < 100) {
-        console.log("NEED MORE MOVIES!");
         this.getData();
       }
     })
   }
 
   handleRefreshMovies() {
-    console.log("returning random movies");
+    // console.log("returning random movies");
     var tmp = this.getValidMovies()
     var ret = [];
     for (var i = 0; i < 4; i++) {

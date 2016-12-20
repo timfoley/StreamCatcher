@@ -28,9 +28,10 @@ class MoviesContainer extends Component {
   onRefresh(e) {
     if (e) e.preventDefault()
 
+
     let newBatch = this.props.handleRefreshMovies().map((movie, i) => {
       if (this.state.movies[i].locked) {
-        return this.state.movies[i]
+        return this.state.movies[i] // keep locked movies right where they are
       } else {
         return movie
       }
@@ -38,14 +39,13 @@ class MoviesContainer extends Component {
 
     this.setState({movies: newBatch, selectedMovie: null}, _ => {
       this.props.handleSkippedMovies(this.state.movies)
-      this.pressingSpace = false
+      this.pressingSpace = false // do I still need this? Check and refactor!
     })
   }
 
   handleClick(e, component) {
     if (this.props.os === "unknown") {
       // if it's not Windows, iOS, or Android, just toggle the lock status
-      console.log("regular click!");
       this.toggleLock(e, component)
     } else if (this.state.selectedMovie === null) {
       //if there is no selected movie, select it
@@ -114,19 +114,15 @@ class MoviesContainer extends Component {
 
 
   handleGetStreamingLinks(e, movie) {
-    console.log(e);
     e.preventDefault()
     let index = this.state.movies.findIndex(mov => mov.title === movie.props.movie.title)
-    console.log(index);
-    console.log(movie);
     this.getOneMovie(movie.props.movie.movie.id)
       .then(res => {
         let streamingLinks = this.processStreamingLinks(res)
-        console.log(this.state.movies);
         this.setState({
           movies: update(this.state.movies, {[index]: {moreInfo: {$set: res}, links: {$set: streamingLinks}}}),
           selectedMovie: update(this.state.selectedMovie, {moreInfo: {$set: res}, links: {$set: streamingLinks}}, _ => {
-            console.log(this.state.selectedMovie);
+            // console.log(this.state.selectedMovie);
           })
         })
       })
