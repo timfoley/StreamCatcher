@@ -1,41 +1,61 @@
 import React, { Component } from 'react';
 // import './Movie.css'
+import Radium from 'radium';
 
 class Movie extends Component {
+  movieStyles = {
+    base: {
+      cursor: 'pointer',
+      width: '25%',
+      height: 'auto',
+      color: 'white',
+      boxSizing: 'border-box',
+      position: 'relative',
+      ':hover': {}
+    },
+
+    icon: {
+      position: 'absolute',
+      left: '40%',
+      top: '70%',
+      color: '#FF0000'
+    },
+
+    hidden: {
+      display: 'none',
+    },
+
+    image: {
+      width: '100%',
+    }
+
+  }
+
+  displayIcon(){
+    if (this.props.locked) {
+      return   (<i className="fa fa-lock fa-3x" aria-hidden="true" style={[
+          this.movieStyles.icon,
+        ]}></i>)
+    } else if (Radium.getState(this.state, this.key, ':hover')) {
+      return (
+        <i className="fa fa-unlock-alt fa-3x" aria-hidden="true" style={[this.movieStyles.icon]}></i>
+      )
+    }
+  }
 
   render() {
-
-    // definitely going to refactor this into separate CSS file or something...
-    let movieStyle = {
-      backgroundImage: `url('${this.props.movie.movie.poster_240x342}')`,
-      backgroundSize: 'cover',
-      cursor: 'pointer',
-      width: '25vw',
-      height: '35.63vw',
-      color: 'white',
-      boxSizing: 'border-box',
-    }
-
-    let lockedStyle = {
-      backgroundImage: `url('${this.props.movie.movie.poster_240x342}')`,
-      backgroundSize: 'cover',
-      cursor: 'pointer',
-      width: '25vw',
-      height: '35.63vw',
-      color: 'white',
-      borderBottom: '15px solid #FF0000',
-      boxSizing: 'border-box',
-    }
 
     return (
       <div className="movie"
         // title={this.props.movie.movie.title} //this is actually kinda annoying!
-        style={this.props.locked ? lockedStyle : movieStyle}
+        style={this.movieStyles.base}
         onMouseEnter={e => this.props.onSelect(e, this)}
         onClick={e => this.props.handleClick(e, this)}>
+        <img src={this.props.movie.movie.poster_240x342} style={this.movieStyles.image}></img>
+        {this.displayIcon()}
       </div>
     )
   }
 }
 
-export default Movie
+export default Radium(Movie)
