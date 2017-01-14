@@ -131,6 +131,7 @@ class MoviesContainer extends Component {
   pressingSpace = false
   handleSpacebar(e) {
     if (e.key === ' ' && !this.pressingSpace) {
+      e.preventDefault()
       this.pressingSpace = true
       this.onRefresh()
     }
@@ -138,8 +139,8 @@ class MoviesContainer extends Component {
 
 
   render() {
-    let movieDetails = <MovieDetails movie={this.state.selectedMovie} onGetStreamingLinks={this.handleGetStreamingLinks.bind(this)} filters={this.props.filters}/>
-    let noMovie = <p className="hover-sign"><strong>Hover over a movie for more info!</strong></p>
+    const movieDetails = <MovieDetails movie={this.state.selectedMovie} onGetStreamingLinks={this.handleGetStreamingLinks.bind(this)} filters={this.props.filters}/>
+    const noMovie = <p className="hover-sign"><strong>Hover over a movie for more info!</strong></p>
 
     return (
 

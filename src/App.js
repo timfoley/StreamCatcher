@@ -33,7 +33,7 @@ class App extends Component {
   * Determine the mobile operating system. Code found at http://stackoverflow.com/questions/21741841/detecting-ios-android-operating-system
   * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
   *
-  * @returns {String}
+  * returns {String}
   */
   getMobileOperatingSystem() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;

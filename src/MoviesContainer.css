@@ -11,7 +11,7 @@ p {
 }
 
 .movies {
-  background: linear-gradient(to bottom, #F1F3F4, #c2bfbf);
+  background: #F1F3F4;
 }
 
 .refresh-button {
