@@ -9,7 +9,7 @@ class MovieDetails extends Component {
         return <p><a href={link.link} className={`${link.source} button`} target="_blank">Stream on {link.display_name}</a></p>
       })
     } else {
-      return <p><a href='#' className="button" onClick={e => this.props.onGetStreamingLinks(e, this)}>Ready to watch? Click for streaming links</a></p>
+      return <p><a href='#' className="button" onClick={e => this.props.onGetStreamingLinks(e, this)}>Click for streaming links</a></p>
     }
   }
 
@@ -29,6 +29,7 @@ class MovieDetails extends Component {
         <p>{this.props.movie.omdbInfo.Plot}</p>
         <p className="rt-score"><strong>RT Score:</strong> <a className="button" href={this.props.movie.omdbInfo.tomatoURL} target="_blank">{this.props.movie.omdbInfo.tomatoMeter}</a></p>
         {this.showConsensus()}
+        <h2>Ready to Watch?</h2>
         {this.showLinks()}
       </div>
     )

@@ -1,0 +1,14 @@
+img {
+  width: 100%;
+}
+
+i {
+  position: absolute;
+  left: 40%;
+  top: 70%;
+  color: #FF0000;
+}
+
+.movie {
+  position: relative;
+}
